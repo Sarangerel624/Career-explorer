@@ -18,6 +18,15 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ message: "hi" });
+export async function GET(req: Request) {
+  try {
+    const created = await prisma.question.findMany({});
+    console.log(created);
+    return NextResponse.json(created);
+  } catch (error) {
+    return NextResponse.json({
+      message: "Error creating question",
+      error: (error as Error).message,
+    });
+  }
 }
