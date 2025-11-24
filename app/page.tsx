@@ -1,7 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { use } from "react";
 
 const Page = () => {
+  const router = useRouter();
   return (
     <div className="absolute inset-0 bg-[url(/bgimage.png)] bg-no-repeat bg-[length:100%_768]">
       <div className="ml-25 mr-25">
@@ -12,8 +15,8 @@ const Page = () => {
             <div>Мэргэжлийн тест</div>
             <div>Дадлагын ажил</div>
             <div>Бидний тухай</div>
-            <div>Нэвтрэх</div>
-            <div>Бүртгүүлэх</div>
+            <button onClick={() => router.push("/sign-up")}>Бүртгүүлэх</button>
+            <button onClick={() => router.push("/log-in")}>Нэвтрэх</button>
           </div>
         </nav>
         <p className="flex justify-center font-bold text-[48px] mt-45 mb-2">
