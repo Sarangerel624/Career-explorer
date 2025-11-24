@@ -15,8 +15,8 @@ const Page = () => {
             <div>Мэргэжлийн тест</div>
             <div>Дадлагын ажил</div>
             <div>Бидний тухай</div>
-            <button onClick={() => router.push("/dashboard")}>Нэвтрэх</button>
-            <button>Бүртгүүлэх</button>
+            <button onClick={() => router.push("/sign-up")}>Бүртгүүлэх</button>
+            <button onClick={() => router.push("/log-in")}>Нэвтрэх</button>
           </div>
         </nav>
         <p className="flex justify-center font-bold text-[48px] mt-45 mb-2">
