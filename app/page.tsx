@@ -2,9 +2,17 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { use } from "react";
-
+import { useUser } from "@/providers/AuthProviders";
 const Page = () => {
-  const router = useRouter();
+  const { push } = useRouter();
+  const { token } = useUser();
+  const isUser = () => {
+    if (token) {
+      push("/testSession");
+    } else {
+      push("/log-in");
+    }
+  };
   return (
     <div className="absolute inset-0 bg-[url(/bgimage.png)] bg-no-repeat bg-[length:100%_768]">
       <div className="ml-25 mr-25">
@@ -15,8 +23,8 @@ const Page = () => {
             <div>Мэргэжлийн тест</div>
             <div>Дадлагын ажил</div>
             <div>Бидний тухай</div>
-            <button onClick={() => router.push("/sign-up")}>Бүртгүүлэх</button>
-            <button onClick={() => router.push("/log-in")}>Нэвтрэх</button>
+            <button onClick={() => push("/sign-up")}>Бүртгүүлэх</button>
+            <button onClick={() => push("/log-in")}>Нэвтрэх</button>
           </div>
         </nav>
         <p className="flex justify-center font-bold text-[48px] mt-45 mb-2">
@@ -26,7 +34,10 @@ const Page = () => {
           Ирээдүйгээ тод болго
         </p>
         <div className="flex gap-8 justify-center mt-30">
-          <Button className="border-3 border-[#A4B1FF] bg-[#7489FF] rounded-full hover:bg-indigo-500 h-14  text-[15px]">
+          <Button
+            className="border-3 border-[#A4B1FF] bg-[#7489FF] rounded-full hover:bg-indigo-500 h-14  text-[15px]"
+            onClick={isUser}
+          >
             Мэргэжил Сонголтын тест өгөх
           </Button>
           <Button className="border-3 border-[#A4B1FF] bg-white text-black rounded-full hover:bg-gray-300 h-14 text-[15px]">

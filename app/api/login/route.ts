@@ -1,8 +1,14 @@
+// app/api/login/route.ts (Next.js route)
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { compare } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function POST(req: Request) {
   try {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    if (!JWT_SECRET) throw new Error("JWT_SECRET is missing");
+
     const { email, password } = await req.json();
 
     const user = await prisma.user.findUnique({
@@ -16,21 +22,27 @@ export async function POST(req: Request) {
       );
     }
 
-    if (user.password !== password) {
+    const isMatch = await compare(password, user.password);
+    if (!isMatch) {
       return NextResponse.json(
         { success: false, message: "Incorrect password" },
         { status: 401 }
       );
     }
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Login successful",
-        userId: user.id,
-      },
-      { status: 200 }
-    );
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: "10h",
+    });
+
+    const safeUser = {
+      id: user.id,
+      email: user.email,
+      username: user.username ?? null,
+      lastName: user.lastName ?? null,
+      createdAt: user.createdAt,
+    };
+
+    return NextResponse.json({ success: true, token: token }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       {

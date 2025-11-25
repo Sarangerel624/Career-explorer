@@ -25,6 +25,16 @@ type User = {
 
 type ContextType = {
   user: User | null;
+  setUser: Dispatch<SetStateAction<null | User>>;
+  setToken: Dispatch<SetStateAction<null | string>>;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  newUserSign: (
+    email: string,
+    password: string,
+    username: string,
+    lastName: string
+  ) => Promise<void>;
 };
 
 type DecodedType = {
@@ -39,9 +49,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const newUserSign = async (
     email: string,
     password: string,
-    username: string
+    username: string,
+    lastName: string
   ) => {
-    const createdUser = await fetch("http://localhost:3000/api/sign-up", {
+    const createdUser = await fetch("/api/sign-up", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -50,46 +61,55 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         email,
         password,
         username,
+        lastName,
       }),
     });
-    if (createdUser.ok) {
-      const signUpUser = await createdUser.json();
-      localStorage.setItem("token", signUpUser);
+    const result = await createdUser.json();
 
-      const decodedToken: DecodedType = jwtDecode(signUpUser);
-      setUser(decodedToken.data);
-      setToken(signUpUser);
-      //   push("/login");
-      toast.success("Successfully registered");
-    } else {
-      toast.error("User is already registered");
+    if (!result.success) {
+      toast.error("User already exists");
+      return;
     }
+
+    const token = result.token;
+    const user = result.user;
+
+    localStorage.setItem("token", token);
+    setToken(token);
+
+    setUser(user);
+    push("/");
+    toast.success("Successfully registered");
   };
 
   const login = async (email: string, password: string) => {
-    const response = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (response.ok) {
-      const localToken = await response.json();
-      localStorage.setItem("token", localToken);
-      setToken(localToken);
-      const decodedToken: DecodedType = jwtDecode(localToken);
-      setUser(decodedToken.data);
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        toast.error(result.message || "Login failed");
+        return;
+      }
+
+      const { token } = result;
+
+      localStorage.setItem("token", token);
+      setToken(token);
+
       push("/");
-      toast.success("Login successfully bro :))");
-    } else {
-      toast.error("Login failed bro :((");
+      toast.success("Login successful 🎉");
+    } catch (err) {
+      toast.error("Login error");
+      console.error(err);
     }
   };
+
   const values = {
     user,
     setUser,
@@ -99,4 +119,13 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     setToken,
   };
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+};
+
+export const useUser = () => {
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error("provider dotor baih heregtei");
+  }
+  return authContext;
 };
