@@ -101,12 +101,10 @@ const Page = () => {
       const res = await fetch(`/api/radarChart/${userId}`);
       const data: RadarDataType[] = await res.json();
 
-      // Өмнөх radarData-г line chart-д хадгалах
       if (radarData.length > 0) setPrevRadarData(radarData);
 
       setRadarData(data);
 
-      // AiResult fetch
       const resultRes = await fetch(`/api/aiResult?userId=${userId}`);
       const resultData = await resultRes.json();
       setTestResult(resultData);
@@ -307,7 +305,6 @@ const Page = () => {
   transition-all duration-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
   hover:brightness-110 hover:-translate-y-[2px]"
                   >
-                    {/* Scroll хийх дотор box */}
                     <div className="h-full overflow-y-auto scrollbar-hide">
                       <p className="font-bold text-white text-[20px]">
                         {item.title}

@@ -55,7 +55,6 @@ const Page = () => {
   return (
     <div className="min-h-screen w-full  from-white to-purple-100 bg-[url('/blue6.jpg')] bg-cover bg-center text-center pb-70">
       {isLogin ? <Headers /> : <HomeHeader />}
-      {/* Hero Section */}
       <section className="w-full bg-center text-center py-40 pb-70">
         <div
           className=" text-[70px] leading-tight  text-glow-blue 
@@ -80,7 +79,6 @@ const Page = () => {
           </button>
         </div>
       </section>
-      {/* Highlights Section */}
       <section className="py-40 bg-center">
         <div className="py-20 text-[60px] text-white font-bold text-shadow-card-foreground mt-10 bit-white-glow">
           Бидний онцлог
@@ -114,18 +112,15 @@ const Page = () => {
           ))}
         </div>
       </section>
-      {/* Bottom Purple Background – FULL IMAGE */}
       <section />
       <section className="w-full bg-cover bg-top py-30 text-white">
         <div className="py-20 text-[60px] text-white font-bold text-shadow-card-foreground mt-10 bit-white-glow">
           Яаж ажилладаг вэ?
         </div>
         <div className="relative max-w-6xl mx-auto mt-24">
-          {/* Horizontal line */}
           <div className="absolute left-0 right-0 top-[37px] h-[2px] bg-gradient-to-r from-indigo-200 to-indigo-400 z-0"></div>
 
           <div className="grid grid-cols-4 text-center relative  z-10">
-            {/* Step 1 */}
             <div className="flex flex-col items-center px-6">
               <div
                 className="h-16 w-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[22px] font-bold
@@ -141,7 +136,6 @@ const Page = () => {
               </p>
             </div>
 
-            {/* Step 2 */}
             <div className="flex flex-col items-center px-6">
               <div
                 className="h-16 w-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[22px] font-bold
@@ -160,7 +154,6 @@ const Page = () => {
               </p>
             </div>
 
-            {/* Step 3 */}
             <div className="flex flex-col items-center px-3">
               <div
                 className="h-16 w-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[22px] font-bold
@@ -179,7 +172,6 @@ const Page = () => {
               </p>
             </div>
 
-            {/* Step 4 */}
             <div className="flex flex-col items-center px-6">
               <div
                 className="h-16 w-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-[22px] font-bold
@@ -330,41 +322,3 @@ const Page = () => {
 };
 
 export default Page;
-
-{
-  /* <header className="sticky top-0 z-50 backdrop-blur-lg bg-white/40 border-b border-white/30 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
-        <div className="max-w-7xl mx-auto py-4 px-6 flex justify-between items-center hover:text-white">
-          <div className="flex gap-4 items-center hover:text-glow-white text-white">
-            {/* <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 shadow-[0_0_12px_rgba(59,130,246,0.8)] rounded-2xl text-white text-center pt-1 font-bold text-[20px]">
-              IREEDUIN KHUTUCH
-            </div> */
-}
-//     <p className="font-bold text-[22px] text-white drop-shadow-lg text-glow-white">
-//       IREEDUIN KHUTUCH
-//     </p>
-//   </div>
-
-//   <div className="flex gap-8 items-center text-[16px] font-medium text-white drop-shadow">
-//     {/* <div
-//       className="cursor-pointer hover:text-indigo-300 transition"
-//       onClick={() => push("/")}
-//     >
-//       Эхлэл
-//     </div> */}
-
-//     <Button
-//       className="rounded-full px-5 bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-400/40 hover:text-white hover:bg-blue-950"
-//       onClick={() => push("/sign-up")}
-//     >
-//       Бүртгүүлэх
-//     </Button>
-
-//     <Button
-//       className="rounded-full px-5 bg-indigo-400 hover:bg-indigo-400 text-white shadow-lg shadow-indigo-400/40 hover:text-white hover:bg-blue-950"
-//       onClick={() => push("/log-in")}
-//     >
-//       Нэвтрэх
-//     </Button>
-//   </div>
-// </div>
-// </header> */}

@@ -6,7 +6,6 @@ export async function POST(req: Request) {
  
     const body = await req.json();
 
-    // body.data -> [{ internship1 }, { internship2 }, ...]
     const internships = body.data;
 
     if (!Array.isArray(internships)) {

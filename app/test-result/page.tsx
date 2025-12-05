@@ -32,8 +32,8 @@ const Page = () => {
 
   console.log(testResult);
   const postUserComment = async () => {
-    if (!comment.trim()) return; // хоосон бичлэгийг хаах
-    setLoadingComment(true); // товчийг идэвхгүй болгох
+    if (!comment.trim()) return; 
+    setLoadingComment(true); 
     try {
       const response = await fetch("/api/comment", {
         method: "POST",
@@ -49,14 +49,14 @@ const Page = () => {
 
       if (response.ok) {
         toast.success("Амжиллттай илгээгдлээ!");
-        setComment(""); // input-ийг цэвэрлэх
+        setComment("");
       } else {
         toast.error("Алдаа гарлаа, дахин оролдоно уу");
       }
     } catch (err) {
       toast.error("Сервертэй холбогдож чадсангүй");
     } finally {
-      setLoadingComment(false); // товчийг дахин идэвхжүүлэх
+      setLoadingComment(false); 
     }
   };
 
@@ -226,7 +226,7 @@ const Page = () => {
           }
         </section>
 
-        {/* ANALYSIS */}
+     
         <section className="space-y-4">
           <div className="flex text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer gap-2">
             <div className="mt-2">

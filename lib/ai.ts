@@ -6,8 +6,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 export async function analyzeAnswersWithGemini(
   userAnswers: Array<{ questionId: string; score: number }>
 ) {
-  // Build the user answer string for prompt replacement
-  const answersText = userAnswers
+    const answersText = userAnswers
     .map((a, i) => `${i + 1}. Q:${a.questionId} => score: ${a.score}`)
     .join("\n");
 

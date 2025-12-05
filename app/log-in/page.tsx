@@ -38,7 +38,6 @@ function Page() {
         <div className="p-9 mt-12 flex flex-col justify-center items-center bg-white h-[600px] w-[500px] rounded-2xl shadow-2xl">
           <p className="mb-7 font-bold text-[22px]">Нэвтрэх</p>
 
-          {/* Email input */}
           <div className="mt-5 w-full max-w-sm">
             <Label htmlFor="email" className="mb-2">
               Имэйл хаяг
@@ -53,7 +52,6 @@ function Page() {
             />
           </div>
 
-          {/* Password input */}
           <div className="mt-6 w-full max-w-sm">
             <Label htmlFor="password" className="mb-2">
               Нууц үг
@@ -68,7 +66,6 @@ function Page() {
             />
           </div>
 
-          {/* Login Button */}
           <Button
             className="mt-10 mb-5 bg-[#7489FF] hover:bg-[#6479F4] size-sm w-sm"
             onClick={handleLogin}
@@ -77,7 +74,6 @@ function Page() {
           </Button>
         </div>
 
-        {/* Register text */}
         <div className="mt-4 text-gray-200 text-lg">
           Хэрвээ та бүртгэлгүй бол{" "}
           <span

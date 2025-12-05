@@ -34,14 +34,12 @@ export default function Page() {
   const userId = user?.id;
 
   const { push } = useRouter();
-  // Load all internships
   const loadInternships = async () => {
     const response = await fetch("/api/intern");
     const data = await response.json();
     setInternships(data);
   };
 
-  // Load saved internships
   const loadSaved = async () => {
     if (!userId) return;
 
@@ -59,7 +57,6 @@ export default function Page() {
     }
   };
 
-  // Toggle save
   const toggleSave = async (internId: string) => {
     if (!userId) return;
 
@@ -76,7 +73,6 @@ export default function Page() {
 
       await res.json();
 
-      // Refresh saved IDs from DB
       await loadSaved();
     } catch (error) {
       console.error(error);
@@ -111,7 +107,6 @@ export default function Page() {
               transition-all duration-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
               hover:brightness-110 hover:-translate-y-[2px]"
             >
-              {/* Save button */}
               <div className="absolute top-3 right-3">
                 <TooltipProvider>
                   <Tooltip>
@@ -141,10 +136,6 @@ export default function Page() {
 
               <CardContent
                 className="p-6"
-                // onClick={() =>
-                //   push(`/internships/internship?internId=${internship.id}`)
-                // }
-
                 onClick={() => push(`/internships/internship/${internship.id}`)}
               >
                 <div className="text-[25px] font-semibold text-white bit-white-glow">
