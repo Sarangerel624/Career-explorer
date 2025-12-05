@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const result = await createdUser.json();
 
     if (!result.success) {
-      toast.error("Та аль хэдийн бүртгүүлсэн байна.🧐");
+      toast.error("Амжилтгүй нэвтэрлээ.");
       return;
     }
 
@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        toast.error("Амжилтгүй нэвтэрлээ😭");
+        toast.error("Амжилтгүй нэвтэрлээ");
         return;
       }
 

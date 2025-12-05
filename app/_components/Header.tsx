@@ -1,5 +1,9 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
+import { User } from "lucide-react";
+import { CalendarSync } from "lucide-react";
+import { FileSliders } from "lucide-react";
 
 export default function Headers() {
   const { push } = useRouter();
@@ -43,33 +47,44 @@ export default function Headers() {
           >
             Тест өгөх
           </div>
-          <div
-            className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
-            onClick={() => push("/internships")}
-          >
-            Дадлагын ажил
+          <div className="cursor-pointer" onClick={() => push("/internships")}>
+            <div
+              className="text-glow-blue text-glow-hover text-white transition-all duration-300 "
+              onClick={() => push("/internships")}
+            >
+              Дадлагын ажил
+            </div>
           </div>
-          <div
-            className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
-            onClick={() => push("/test-result")}
-          >
-            Тестийн хариу харах
-          </div>
-          <div
-            className="hover:text-indigo-300 transition text-glow-blue text-glow-hover text-white duration-300 cursor-pointer"
-            onClick={() => push("/profile")}
-          >
-            Профайл
+          <div className="cursor-pointer">
+            <div
+              className="text-glow-blue text-glow-hover text-white transition-all duration-300"
+              onClick={() => push("/test-result")}
+            >
+              Тестийн хариу харах
+            </div>
           </div>
 
-          <div
-            className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
-            onClick={logout}
-          >
-            Гарах
+          <div className="flex gap-2 cursor-pointer">
+            <div>
+              <User />
+            </div>
+            <div
+              className="hover:text-indigo-300 transition text-glow-blue text-glow-hover text-white duration-300 "
+              onClick={() => push("/profile")}
+            >
+              Профайл
+            </div>
           </div>
 
-          {/* <Button className="rounded-full px-5 bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg shadow-indigo-400/40"></Button> */}
+          <div className="flex gap-2 cursor-pointer" onClick={logout}>
+            <div className="text-glow-blue text-glow-hover text-white transition-all duration-300">
+              Гарах
+            </div>
+            <div>
+              {" "}
+              <LogOut />
+            </div>
+          </div>
         </div>
       </div>
     </header>
