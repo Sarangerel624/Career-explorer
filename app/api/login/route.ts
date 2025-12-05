@@ -37,12 +37,16 @@ export async function POST(req: Request) {
     const safeUser = {
       id: user.id,
       email: user.email,
-      username: user.username ?? null,
-      lastName: user.lastName ?? null,
+      username: user.username,
+      lastName: user.lastName,
       createdAt: user.createdAt,
     };
+    console.log(safeUser);
 
-    return NextResponse.json({ success: true, token: token }, { status: 200 });
+    return NextResponse.json(
+      { success: true, token: token, user: safeUser },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
       {

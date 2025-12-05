@@ -37,9 +37,12 @@ model User {
   lastName String 
   email String  @unique
   password String
+  imgUrl String?
   createdAt DateTime @default(now())
   sessions TestSession[]
   answers UserAnswers[]
+  comments Comments[]
+  saved   SavedInternships[]
 }
 
 model TestSession {
@@ -66,8 +69,53 @@ model AiResult {
   id String @id @default(nanoid())
   session TestSession @relation(fields: [sessionId], references: [id])
   sessionId String @unique
-  aiSystem AiSystem @relation(fields: [aiSystemId], references: [id])
-  aiSystemId String
-  resultText String
+  summary String
+  topCareers Json
+  personalityType String
+  aiSystem AiSystem? @relation(fields: [aiSystemId], references: [id])
+  aiSystemId String?
+  description String
+  relatedCareers Json
+  internshipOpportunities Json
+  recommendedSkills Json
+
   createdAt DateTime @default(now())
 }
+
+
+model Comments {
+  id        String @id @default(nanoid())
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+  text String
+  username String
+  createdAt DateTime @default(now())
+}
+
+
+model Internships {
+  id              String   @id @default(nanoid())
+  title           String
+  company         String
+  organizationInfo String?
+  jobInfo         String[]
+  requirements    String[]
+  addnationalInfo String[]
+  salary          String? 
+  imgUrl          String?
+  deadline        String
+
+  savedInterns    SavedInternships[]
+}
+
+model SavedInternships {
+  userId   String
+  internId String
+  user     User        @relation(fields: [userId], references: [id])
+  intern   Internships @relation(fields: [internId], references: [id])
+
+  @@id([userId, internId])
+}
+
+
+

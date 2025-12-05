@@ -5,6 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, ChangeEvent } from "react";
 import { useUser } from "@/providers/AuthProviders";
+import { useRouter } from "next/navigation";
+import Headers from "../_components/Header";
+import HomeHeader from "../_components/HomeHeader";
 function Page() {
   const { newUserSign, user } = useUser();
 
@@ -26,8 +29,11 @@ function Page() {
   const hangleSign = async () => {
     await newUserSign(sign.email, sign.password, sign.username, sign.lastName);
   };
+
+  const { push } = useRouter();
   return (
-    <div className="bg-[url(/backimg.png)]">
+    <div className="min-h-screen w-full  from-white to-purple-100 bg-[url('/blue6.jpg')] bg-cover bg-center text-center pb-70">
+      <HomeHeader />
       <div className="flex justify-center">
         <div className="p-9 mt-30 flex-col flex justify-items-center items-center bg-white h-800px w-lg rounded-2xl shadow-2xl">
           <p className="mb-7 font-bold text-[22px] flex items-center">
@@ -84,6 +90,13 @@ function Page() {
             Бүртгүүлэх
           </Button>
         </div>
+      </div>
+      <div className="mt-3 text-lg text-gray-200">
+        Хэрвээ та бүртгэлтэй бол{" "}
+        <span className="text-blue-400" onClick={() => push("/log-in")}>
+          нэвтэрнэ
+        </span>{" "}
+        үү.
       </div>
     </div>
   );

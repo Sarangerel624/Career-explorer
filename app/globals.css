@@ -43,6 +43,71 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Tailwind дээр custom text glow */
+@layer utilities {
+  .text-glow-blue {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.4);
+  }
+
+  .text-glow-white {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(240, 240, 240, 0.967), 0 0 40px rgba(246, 248, 250, 0.967);
+  }
+
+  .bit-white-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.44),
+      0 0 20px rgba(245, 231, 231, 0.702), 0 0 40px rgba(246, 248, 250, 0.577);
+  }
+  .text-glow-dark-blue {
+    text-shadow: 0 0 10px rgba(118, 160, 228, 0.8),
+      0 0 20px rgba(30, 111, 243, 0.6), 0 0 40px rgba(4, 27, 68, 0.4);
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 10px rgba(133, 14, 244, 0.8),
+      0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.4);
+  }
+}
+
+@layer utilities {
+  .text-glow-hover:hover {
+    text-shadow: 0 0 15px rgb(145, 184, 247), 0 0 30px rgba(127, 172, 245, 0.8),
+      0 0 60px rgba(109, 164, 253, 0.7);
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Tailwind plugin or global.css */
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@layer utilities {
+  .text-glow-purple-hover:hover:hover {
+    text-shadow: 0 0 15px rgb(197, 116, 241), 0 0 30px rgba(191, 41, 255, 0.8),
+      0 0 60px rgba(159, 59, 246, 0.7);
+  }
+}
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

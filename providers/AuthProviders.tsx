@@ -16,11 +16,12 @@ import { jwtDecode } from "jwt-decode";
 
 type User = {
   id: string;
-  name: string;
+  username: string;
   email: string;
   password: string;
   sessions: string[];
   answers: string[];
+  imgUrl: string;
 };
 
 type ContextType = {
@@ -45,6 +46,21 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const { push } = useRouter();
+  useEffect(() => {
+    const savedToken = localStorage.getItem("token");
+    const savedUser = localStorage.getItem("user");
+
+    if (savedToken && savedUser) {
+      try {
+        setToken(savedToken);
+        setUser(JSON.parse(savedUser));
+      } catch (err) {
+        console.error("Failed to parse user:", err);
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      }
+    }
+  }, []);
 
   const newUserSign = async (
     email: string,
@@ -67,7 +83,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const result = await createdUser.json();
 
     if (!result.success) {
-      toast.error("User already exists");
+      toast.error("Та аль хэдийн бүртгүүлсэн байна.🧐");
       return;
     }
 
@@ -75,11 +91,12 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const user = result.user;
 
     localStorage.setItem("token", token);
-    setToken(token);
+    localStorage.setItem("user", JSON.stringify(user));
 
+    setToken(token);
     setUser(user);
-    push("/");
-    toast.success("Successfully registered");
+    push("/testSession");
+    toast.success("Амжилттай бүртгүүллээ🎉");
   };
 
   const login = async (email: string, password: string) => {
@@ -93,17 +110,19 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        toast.error(result.message || "Login failed");
+        toast.error("Амжилтгүй нэвтэрлээ😭");
         return;
       }
 
-      const { token } = result;
+      const { token, user } = result;
 
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
       setToken(token);
+      setUser(user);
 
       push("/");
-      toast.success("Login successful 🎉");
+      toast.success("Амжилттай нэвтэрлээ🎉");
     } catch (err) {
       toast.error("Login error");
       console.error(err);
