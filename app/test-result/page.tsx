@@ -142,25 +142,6 @@ const Page = () => {
           </div>
         </section>
 
-        {/* {testResult.relatedCareers?.length > 0 && (
-          <section className="space-y-3">
-            <h2 className="flex items-center gap-2 text-3xl text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer">
-              Ижил Төстэй Мэргэжлүүд
-            </h2>
-
-            <div className="flex flex-wrap gap-3">
-              {testResult.relatedCareers?.map((item: any, idx: number) => (
-                <span
-                  key={idx}
-                  className="bg-blue-100 text-black px-4 py-2 rounded-2xl font-bold"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </section>
-        )} */}
-
         {testResult.relatedCareers?.length > 0 && (
           <section className="space-y-3">
             <h2 className="flex items-center gap-2 text-3xl text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer">
