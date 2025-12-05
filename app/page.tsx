@@ -6,8 +6,6 @@ import { useUser } from "@/providers/AuthProviders";
 import Headers from "./_components/Header";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
-
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
