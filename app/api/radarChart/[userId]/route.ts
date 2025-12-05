@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
-export async function GET( req: Request,{ params }: { params: { userId: string } }) {
-  const { userId } = params;
+export async function GET(req: Request, { params }: { params: Promise<{ userId: string; }> }) {
+  const { userId } = await params;
 
   try {
     const answers = await prisma.userAnswers.findMany({
