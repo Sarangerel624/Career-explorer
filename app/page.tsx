@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useRouter } from "next/navigation";
 import { useUser } from "@/providers/AuthProviders";
 import Headers from "./_components/Header";
@@ -233,7 +232,7 @@ const Page = () => {
                     return (
                       <CarouselItem
                         key={index}
-                        className="ml-8 md:basis-1/2 lg:basis-1/3"
+                        className="ml-8 md:basis-1/2 lg:basis-1/4"
                       >
                         <div className="p-2">
                           <div

@@ -42,6 +42,7 @@ model User {
   answers   UserAnswers[]
   comments  Comments[]
   saved     SavedInternships[]
+  radarChartResult  RadarChartResult[]
 }
 
 model TestSession {
@@ -112,4 +113,15 @@ model SavedInternships {
   intern   Internships @relation(fields: [internId], references: [id])
 
   @@id([userId, internId])
+}
+
+
+
+model RadarChartResult {
+  id        String   @id @default(cuid())
+  userId    String
+  user User @relation(fields:[userId], references:[id])
+  category  String
+  value     Float
+  createdAt DateTime @default(now())
 }
