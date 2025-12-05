@@ -77,7 +77,7 @@ const Page = () => {
           </button>
         </div>
       </section>
-      <section className=" bg-center">
+      <section className=" bg-center -mt-20">
         <div className="text-[60px] text-white font-bold text-shadow-card-foreground bit-white-glow">
           Бидний онцлог
         </div>
