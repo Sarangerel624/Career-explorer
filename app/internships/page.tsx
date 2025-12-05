@@ -102,7 +102,7 @@ export default function Page() {
           return (
             <Card
               key={internship.id}
-              className="relative border border-gray-200 rounded-xl hover:shadow-md items-center gap-2 px-7 py-3 font-semibold text-white h-[300px] w-[450px]
+              className="relative border border-gray-200 rounded-xl hover:shadow-md items-center gap-2 px-7 py-3 font-semibold text-white h-[300px] w-[390px]
               cursor-pointer bg-gradient-to-r shadow-[0_0_15px_rgba(99,102,241,0.45)]
               transition-all duration-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
               hover:brightness-110 hover:-translate-y-[2px]"
