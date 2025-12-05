@@ -26,7 +26,7 @@ export default function HomeHeader() {
             className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
             onClick={() => push("/")}
           >
-            Эхлэл
+            Нүүр Хуудас
           </div>
 
           <Button

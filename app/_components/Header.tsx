@@ -35,7 +35,7 @@ export default function Headers() {
             className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
             onClick={() => push("/")}
           >
-            Эхлэл
+            Нүүр хуудас
           </div>
           <div
             className="text-glow-blue text-glow-hover text-white transition-all duration-300 cursor-pointer"
@@ -59,7 +59,7 @@ export default function Headers() {
             className="hover:text-indigo-300 transition text-glow-blue text-glow-hover text-white duration-300 cursor-pointer"
             onClick={() => push("/profile")}
           >
-            Нүүр хуудас
+            profile
           </div>
 
           <div
