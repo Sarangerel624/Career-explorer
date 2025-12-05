@@ -35,7 +35,7 @@ function Page() {
     <div className=" min-h-screen w-full bg-[url('/blue6.jpg')] bg-cover bg-center text-center pb-16">
       <HomeHeader />
       <div className="flex flex-col justify-center items-center">
-        <div className="p-9 mt-30 flex flex-col justify-center items-center bg-white h-[500px] w-[500px] rounded-2xl shadow-2xl">
+        <div className="p-9 mt-15 flex flex-col justify-center items-center bg-white h-[500px] w-[500px] rounded-2xl shadow-2xl">
           <p className="mb-7 font-bold text-[22px]">Нэвтрэх</p>
 
           <div className="mt-5 w-full max-w-sm">

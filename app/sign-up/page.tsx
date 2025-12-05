@@ -35,7 +35,7 @@ function Page() {
     <div className="min-h-screen w-full  from-white to-purple-100 bg-[url('/blue6.jpg')] bg-cover bg-center text-center pb-70">
       <HomeHeader />
       <div className="flex justify-center">
-        <div className="p-9 mt-30 h-[550px] w-lg bg-white h-800px rounded-2xl shadow-2xl">
+        <div className="p-9 mt-15 h-[550px] w-lg bg-white h-800px rounded-2xl shadow-2xl">
           <p className="mb-7 font-bold text-[22px] flex items-center">
             Бүртгэл
           </p>
