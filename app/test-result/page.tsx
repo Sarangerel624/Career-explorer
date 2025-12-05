@@ -8,6 +8,16 @@ import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { FolderSearch } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+
+export function LinkAsBadge() {
+  return (
+    <Badge asChild>
+      <Link href="/">Badge</Link>
+    </Badge>
+  );
+}
 import {
   Carousel,
   CarouselContent,
@@ -32,8 +42,8 @@ const Page = () => {
 
   console.log(testResult);
   const postUserComment = async () => {
-    if (!comment.trim()) return; 
-    setLoadingComment(true); 
+    if (!comment.trim()) return;
+    setLoadingComment(true);
     try {
       const response = await fetch("/api/comment", {
         method: "POST",
@@ -56,7 +66,7 @@ const Page = () => {
     } catch (err) {
       toast.error("Сервертэй холбогдож чадсангүй");
     } finally {
-      setLoadingComment(false); 
+      setLoadingComment(false);
     }
   };
 
@@ -132,10 +142,10 @@ const Page = () => {
           </div>
         </section>
 
-        {testResult.relatedCareers?.length > 0 && (
+        {/* {testResult.relatedCareers?.length > 0 && (
           <section className="space-y-3">
             <h2 className="flex items-center gap-2 text-3xl text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer">
-              Ижил Төстэй Карьерууд
+              Ижил Төстэй Мэргэжлүүд
             </h2>
 
             <div className="flex flex-wrap gap-3">
@@ -146,6 +156,25 @@ const Page = () => {
                 >
                   {item}
                 </span>
+              ))}
+            </div>
+          </section>
+        )} */}
+
+        {testResult.relatedCareers?.length > 0 && (
+          <section className="space-y-3">
+            <h2 className="flex items-center gap-2 text-3xl text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer">
+              Ижил Төстэй Мэргэжлүүд
+            </h2>
+
+            <div className="flex flex-wrap gap-3">
+              {testResult.relatedCareers.map((item: any, idx: number) => (
+                <Badge
+                  className="bg-blue-100 text-blue-700 px-5 py-3 rounded-xl  text-[15px]"
+                  key={idx}
+                >
+                  {item}
+                </Badge>
               ))}
             </div>
           </section>
@@ -226,7 +255,6 @@ const Page = () => {
           }
         </section>
 
-     
         <section className="space-y-4">
           <div className="flex text-glow-blue text-glow-hover font-extrabold text-blue-200 transition-all duration-300 cursor-pointer gap-2">
             <div className="mt-2">
@@ -269,7 +297,7 @@ const Page = () => {
     hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
     hover:brightness-110 hover:-translate-y-[2px]"
               onClick={postUserComment}
-              disabled={loadingComment} 
+              disabled={loadingComment}
             >
               Сэтгэгдэл илгээх <ChevronRight size={18} />
             </button>

@@ -59,7 +59,7 @@ export default function Headers() {
             className="hover:text-indigo-300 transition text-glow-blue text-glow-hover text-white duration-300 cursor-pointer"
             onClick={() => push("/profile")}
           >
-            profile
+            Профайл
           </div>
 
           <div
