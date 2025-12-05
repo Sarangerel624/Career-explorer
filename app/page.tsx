@@ -237,7 +237,7 @@ const Page = () => {
                       >
                         <div className="p-2">
                           <div
-                            className="relative border border-gray-200 rounded-xl items-center gap-2 px-7 font-semibold text-black h-80 w-[300px]
+                            className="relative border border-gray-200 rounded-xl items-center gap-2 px-7 font-semibold text-black h-80 w-[280px]
               cursor-pointer bg-white
               transition-all duration-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
               hover:brightness-110 hover:-translate-y-0.5 mt-5 pt-10"
