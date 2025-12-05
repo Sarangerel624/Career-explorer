@@ -35,7 +35,7 @@ function Page() {
     <div className="min-h-screen w-full  from-white to-purple-100 bg-[url('/blue6.jpg')] bg-cover bg-center text-center pb-70">
       <HomeHeader />
       <div className="flex justify-center">
-        <div className="p-9 mt-30 flex-col flex justify-items-center items-center bg-white h-800px w-lg rounded-2xl shadow-2xl">
+        <div className="p-9 mt-30 h-[550px] w-lg bg-white h-800px rounded-2xl shadow-2xl">
           <p className="mb-7 font-bold text-[22px] flex items-center">
             Бүртгэл
           </p>
@@ -89,14 +89,14 @@ function Page() {
           >
             Бүртгүүлэх
           </Button>
+          <div className="text-lg text-gray-900">
+            Хэрвээ та бүртгэлтэй бол{" "}
+            <span className="text-blue-400" onClick={() => push("/log-in")}>
+              нэвтэрнэ
+            </span>{" "}
+            үү.
+          </div>
         </div>
-      </div>
-      <div className="mt-3 text-lg text-gray-200">
-        Хэрвээ та бүртгэлтэй бол{" "}
-        <span className="text-blue-400" onClick={() => push("/log-in")}>
-          нэвтэрнэ
-        </span>{" "}
-        үү.
       </div>
     </div>
   );
