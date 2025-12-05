@@ -1,10 +1,22 @@
 "use client";
-
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import LikertOption from "../_components/LikertOption";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useUser } from "@/providers/AuthProviders";
 import { useRouter } from "next/navigation";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CircleAlert } from "lucide-react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 type Question = {
   id: string;
   text: string;
@@ -32,6 +44,8 @@ const Page = () => {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [unansweredIds, setUnansweredIds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const { user } = useUser();
   const { push } = useRouter();
@@ -58,6 +72,14 @@ const Page = () => {
 
   const handleSelect = (qid: string, ans: number) => {
     setAnswers({ ...answers, [qid]: ans });
+
+    if (unansweredIds.includes(qid)) {
+      setUnansweredIds(unansweredIds.filter((id) => id !== qid));
+    }
+
+    if (showAlert) {
+      setShowAlert(false);
+    }
   };
 
   const getQuestions = async () => {
@@ -126,9 +148,10 @@ const Page = () => {
     const unanswered = requiredIds.filter((id) => answers[id] === undefined);
 
     if (unanswered.length > 0) {
+      setShowAlert(true);
       setUnansweredIds(unanswered);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      return alert("Танд хариулаагүй үлдээсэн асуулт байна!");
+      return;
     }
 
     const category = categories[currentCategoryIndex];
@@ -152,6 +175,7 @@ const Page = () => {
     }
 
     setIsLoading(true);
+    setOpen(true);
 
     try {
       await handleSubmit();
@@ -226,7 +250,17 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full bg-[url('/raindow1.jpg')] bg-cover bg-center flex flex-col items-center px-6 py-10 bg-gradient-to-b">
+    <div className="w-full bg-[url('/raindow1.jpg')] bg-cover bg-center flex flex-col items-center px-6 py-10 bg-linear-to-b">
+      <div className="w-full flex justify-start">
+        <Button
+          variant="secondary"
+          className="cursor-pointer ml-60 -mb-25"
+          onClick={() => push("/")}
+        >
+          Гарах
+        </Button>
+      </div>
+
       <div className="w-full max-w-2xl">
         <p className="text-right text-sm mb-1 text-white">
           step {currentCategoryIndex + 1} of {totalSteps}
@@ -243,7 +277,7 @@ const Page = () => {
         {COLOR.map((col, index) => (
           <button
             key={index}
-            className={`h-12 w-12 rounded-full flex items-center justify-center border transition-all ${col}`}
+            className={`h-12 w-12 rounded-full flex items-center justify-center border transition-all  ${col}`}
           ></button>
         ))}
       </div>
@@ -260,7 +294,7 @@ const Page = () => {
         {currentQuestions.map((q) => (
           <div
             key={q.id}
-            className={`bg-white/80 shadow-md rounded-xl p-5 backdrop-blur-sm 
+            className={`bg-white/80 shadow-md rounded-xl p-5 backdrop-blur-sm   
       ${unansweredIds.includes(q.id) ? "border-2 border-red-500" : ""}
     `}
           >
@@ -293,24 +327,47 @@ const Page = () => {
         <button
           onClick={handleNext}
           disabled={isLoading}
-          className={`bg-white text-gray-800 px-6 py-3 rounded-full shadow-md transition-colors duration-200 
-             ${
-               isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-100"
-             }
-            `}
+          className={`relative bg-white text-gray-800 px-6 py-3 rounded-full shadow-md transition-colors duration-200 
+  ${isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-100"}
+`}
         >
           {isLoading && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-              <div className="bg-white p-6 rounded-xl  text-center">
-                <div className="w-7 h-7 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto mb-3"></div>
-                <p className="text-black  text-2xl font-extrabold">
-                  Та түр хүлээнэ үү. <br /> AI анализ хийгдэж байна...
-                </p>
-              </div>
+            <div className="absolute -left-8 top-1/2 -translate-y-1/2">
+              <div className="w-5 h-5 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
             </div>
-          )}{" "}
+          )}
+
           <ArrowRight />
         </button>
+      </div>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-md bg-white rounded-xl text-center flex flex-col items-center py-8">
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mb-4"></div>
+
+          <DialogHeader>
+            <DialogTitle className="text-2xl">
+              Та 30 – 40 секунд түр хүлээнэ үү.
+            </DialogTitle>
+            <DialogDescription className="text-gray-900 text-2xl">
+              AI анализ хийгдэж байна...
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
+      <div className="w-full max-w-2xl mt-4">
+        {showAlert && (
+          <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] w-full max-w-lg px-4">
+            <Alert variant="destructive" className="shadow-lg">
+              <AlertTitle className="flex items-center gap-2 text-2xl">
+                <CircleAlert /> Анхаар!
+              </AlertTitle>
+              <AlertDescription>
+                Танд хариулаагүй асуулт байна.
+              </AlertDescription>
+            </Alert>
+          </div>
+        )}
       </div>
     </div>
   );

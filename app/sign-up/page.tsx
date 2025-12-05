@@ -36,9 +36,7 @@ function Page() {
       <HomeHeader />
       <div className="flex justify-center">
         <div className="p-9 mt-15 h-[550px] w-lg bg-white h-800px rounded-2xl shadow-2xl">
-          <p className="mb-7 font-bold text-[22px] flex items-center">
-            Бүртгэл
-          </p>
+          <p className="mb-7 font-bold text-[22px]  text-center">Бүртгүүлэх</p>
           <div className="grid w-full max-w-sm items-center gap-3">
             <Label htmlFor="name">Нэр</Label>
             <Input
