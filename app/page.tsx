@@ -116,7 +116,7 @@ const Page = () => {
           Яаж ажилладаг вэ?
         </div>
         <div className="relative max-w-6xl mx-auto mt-10">
-          <div className="absolute left-0 right-0 top-[37px] h-[2px] bg-gradient-to-r from-indigo-200 to-indigo-400 z-0"></div>
+          <div className="absolute left-0 right-0 top-[37px] h-0.5 bg-linear-to-r from-indigo-200 to-indigo-400 z-0"></div>
 
           <div className="grid grid-cols-4 text-center relative  z-10">
             <div className="flex flex-col items-center px-6">
@@ -237,10 +237,10 @@ const Page = () => {
                       >
                         <div className="p-2">
                           <div
-                            className="relative border border-gray-200 rounded-xl items-center gap-2 px-7 font-semibold text-black h-[300px] w-[450px]
+                            className="relative border border-gray-200 rounded-xl items-center gap-2 px-7 font-semibold text-black h-80 w-[300px]
               cursor-pointer bg-white
               transition-all duration-300 hover:shadow-[0_0_25px_rgba(99,102,241,0.9)]
-              hover:brightness-110 hover:-translate-y-[2px] mt-5 pt-10"
+              hover:brightness-110 hover:-translate-y-0.5 mt-5 pt-10"
                           >
                             <div className="flex items-center gap-2">
                               <div
