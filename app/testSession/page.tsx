@@ -254,7 +254,7 @@ const Page = () => {
       <div className="w-full flex justify-start">
         <Button
           variant="secondary"
-          className="cursor-pointer ml-60 -mb-25"
+          className="cursor-pointer ml-40 -mb-25"
           onClick={() => push("/")}
         >
           Гарах

@@ -362,7 +362,7 @@ const Page = () => {
       )}
 
       {prevRadarData.length > 0 && (
-        <div className="px-20 mt-10">
+        <div className="px-20 mt-10  mb-10">
           <Card className="bg-white/10 border-white/20 backdrop-blur-md w-[600px]">
             <CardHeader>
               <CardTitle className="text-white bit-white-glow">
