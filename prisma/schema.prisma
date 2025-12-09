@@ -82,6 +82,7 @@ model AiResult {
   createdAt DateTime @default(now())
 }
 
+
 model Comments {
   id        String   @id @default(nanoid())
   userId    String
@@ -111,7 +112,6 @@ model SavedInternships {
   internId String
   user     User        @relation(fields: [userId], references: [id])
   intern   Internships @relation(fields: [internId], references: [id])
-
   @@id([userId, internId])
 }
 

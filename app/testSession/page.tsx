@@ -93,7 +93,7 @@ const Page = () => {
       console.error("FETCH ERROR:", e);
     }
   };
-
+ 
   useEffect(() => {
     getQuestions();
   }, []);
@@ -363,7 +363,7 @@ const Page = () => {
                 <CircleAlert /> Анхаар!
               </AlertTitle>
               <AlertDescription>
-                Танд хариулаагүй асуулт байна.
+                Танд хариулаагүй асуулт байна!
               </AlertDescription>
             </Alert>
           </div>

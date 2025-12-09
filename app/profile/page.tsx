@@ -842,7 +842,7 @@ const Page = () => {
         Өмнөх ба Одоогийн үр дүн {" "}
       </div>
 
-      {/* Line Charts */}
+   
       <div className="flex px-20 mt-10 pb-20">
         <div className="mr-10">
           <Card className="bg-white/10 border-white/20 backdrop-blur-md w-[600px]">
