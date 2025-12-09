@@ -212,7 +212,7 @@ const Page = () => {
 
                           <div className="mt-3 text-sm text-white space-y-1">
                             <p>
-                              <strong>Байршил :</strong> {item.location}
+                              <strong>Байршил </strong> {item.location}
                             </p>
 
                             <p className="font-semibold">
